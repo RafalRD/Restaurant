@@ -291,10 +291,7 @@
           </div>
         </div>
         <div class="col-md-8 col-sm-8">
-
-
-
-          <form th:action="@{/save}" action="" method="post" role="form" class="contactForm">
+          <form id="save" th:action="@{/save}" action="" method="post" role="form" class="contactForm">
             <div id="sendmessage">Your booking request has been sent. Thank you!</div>
             <div id="errormessage"></div>
             <div class="col-md-6 col-sm-6 contact-form pad-form">
@@ -312,7 +309,7 @@
             </div>
             <div class="col-md-6 col-sm-6 contact-form pad-form">
               <div class="form-group">
-                <input type="email" th:field="${booking.email}" class="form-control label-floating is-empty" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <input type="text" th:field="${booking.email}" class="form-control label-floating is-empty" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
                 <div class="validation"></div>
               </div>
             </div>
@@ -330,16 +327,15 @@
             </div>
             <div class="col-md-6 col-sm-6 contact-form">
               <div class="form-group">
-                <input type="text" th:field="${booking.people}" class="form-control label-floating is-empty" name="people" id="people" placeholder="People" data-rule="required" data-msg="This field is required" />
+                <input type="number" min="1" max="20"  th:field="${booking.people}" class="form-control label-floating is-empty" name="people" id="people" placeholder="How meany People" data-rule="required" data-msg="This field is required" />
                 <div class="validation"></div>
               </div>
             </div>
             <div class="col-md-12 contact-form">
               <div class="form-group label-floating is-empty">
-                <textarea class="form-control" name="message" th:field="${booking.message}" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <textarea class="form-control" name="message" id="message" th:field="${booking.message}" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
                 <div class="validation"></div>
               </div>
-
             </div>
             <div class="col-md-12 btnpad">
               <div class="contacts-btn-pad">
@@ -347,13 +343,46 @@
               </div>
             </div>
           </form>
-
-
-
         </div>
       </div>
     </div>
+
+
   </section>
+  <div class="container">
+    <!--<h3 class="container text-center">All Orders</h3>-->
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>People</th>
+        <th>+_+</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--<th:block>-->
+      <tr  th:each="orders : ${allOrders}">
+        <td th:text="${orders.name}">Name</td>
+        <td th:text="${orders.date}">Date</td>
+        <td th:text="${orders.time}">Time</td>
+        <td th:text="${orders.people}">People</td>
+        <td> <a th:href="@{'delete/{id}'(id=${orders.id})}" class="delete" >
+          <button type="button" class="btn btn-default btn-sm">
+            Delete
+          </button>
+        </a></td>
+      </tr>
+
+      <!--</th:block>-->
+
+      </tbody>
+    </table>
+  </div>
+
+
+
   <!-- / contact -->
   <!-- footer -->
   <footer class="footer text-center">

@@ -476,3 +476,11 @@ table {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
+.errors
+{
+    font-size: 13px;
+    color: #ff0033;
+    top: 1px;
+}
+
+

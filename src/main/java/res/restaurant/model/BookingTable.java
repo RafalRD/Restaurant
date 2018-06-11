@@ -3,6 +3,7 @@ package res.restaurant.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class BookingTable {
@@ -10,13 +11,20 @@ public class BookingTable {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
     private String name;
+    @NotNull
     private String email;
+    @NotNull
     private String phone;
+    @NotNull
     private Integer people;
-    private String message;
+    @NotNull
     private String date;
+    @NotNull
     private String time;
+
+    private String message;
 
     public BookingTable() {
     }
